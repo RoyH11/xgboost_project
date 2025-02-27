@@ -1,6 +1,7 @@
 """
 File: config.py
 Author: Roy Huang
+Email: ruoqiuhuang@gmail.com
 Date: 2025-02-27
 Description: Configuration file containing hyperparameter settings and dataset paths 
 for XGBoost model tuning.
@@ -8,13 +9,19 @@ for XGBoost model tuning.
 
 # Data paths
 # color fundus photography (CFP) dataset
-CSV_PATH = "RetFound_LF_all_Automorph_with_fully_labelled.csv"
+CSV_PATH = r"C:\Users\S237442\Documents\GitHub\xgboost_project\data\RetFound_LF_all_Automorph_with_fully_labelled.csv"
 
 # # optical coherence tomography (OCT) dataset
 # CSV_PATH = "L:\\Lab\\Roy\\AI-READi-Roy\\60_RETFound_stuff\\60_cfp_all\\30_XGBoost\\RETFound_LF_all_OCT_fully_labelled.csv"
 
+# Parameters foler
+PARAMETERS_FOLDER = r"C:\Users\S237442\Documents\GitHub\xgboost_project\hyperparameters"
+
+# Model folder
+MODEL_FOLDER = r"C:\Users\S237442\Documents\GitHub\xgboost_project\saved_models"
+
 # Comparison setting
-COMPARE = True  # False for all 4, True for health vs unhealthy
+BINARY = True  # False for all 4, True for health vs unhealthy
 
 # Machine region selection
 MACHINE_REGION = "maestro2_3d_macula"

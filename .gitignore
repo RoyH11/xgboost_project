@@ -1,3 +1,9 @@
 data/ 
 
 xgboost_tune_roy.py
+
+saved_models/
+
+__pycache__/
+
+hyperparameters/
