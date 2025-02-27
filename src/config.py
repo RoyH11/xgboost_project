@@ -7,8 +7,11 @@ for XGBoost model tuning.
 """
 
 # Data paths
-CFP_CSV_PATH = "RetFound_LF_all_Automorph_with_fully_labelled.csv"
-OCT_CSV_PATH = "L:\\Lab\\Roy\\AI-READi-Roy\\60_RETFound_stuff\\60_cfp_all\\30_XGBoost\\RETFound_LF_all_OCT_fully_labelled.csv"
+# color fundus photography (CFP) dataset
+CSV_PATH = "RetFound_LF_all_Automorph_with_fully_labelled.csv"
+
+# # optical coherence tomography (OCT) dataset
+# CSV_PATH = "L:\\Lab\\Roy\\AI-READi-Roy\\60_RETFound_stuff\\60_cfp_all\\30_XGBoost\\RETFound_LF_all_OCT_fully_labelled.csv"
 
 # Comparison setting
 COMPARE = True  # False for all 4, True for health vs unhealthy
