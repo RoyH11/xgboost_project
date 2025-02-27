@@ -160,7 +160,7 @@ def train_final_model(X_train, X_val, y_train, y_val, best_params, timestamp):
     # retrain the model with the best iteration
     if best_iteration is not None:
         print(f"\nRetraining the model with the best iteration: {best_iteration}")
-        final_model.n_estimators = best_iteration
+        final_model.n_estimators = best_iteration+1
         final_model.fit(
             X_train, y_train,
             eval_set=[(X_val, y_val)],
