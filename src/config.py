@@ -17,8 +17,8 @@ CSV_PATH = r"C:\Users\S237442\Documents\GitHub\xgboost_project\data\RetFound_LF_
 # Parameters foler
 PARAMETERS_FOLDER = r"C:\Users\S237442\Documents\GitHub\xgboost_project\hyperparameters"
 
-# Model folder
-MODEL_FOLDER = r"C:\Users\S237442\Documents\GitHub\xgboost_project\saved_models"
+# Models folder
+MODELS_FOLDER = r"C:\Users\S237442\Documents\GitHub\xgboost_project\saved_models"
 
 # Comparison setting
 BINARY = True  # False for all 4, True for healthy vs unhealthy
