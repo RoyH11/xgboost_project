@@ -1,4 +1,4 @@
-# XGBoost Model Training and Hyperparameter Tuning
+# XGBoost Model Training and Hyperparameter Tuning (GPU-Optimized)
 
 ## Overview
 Originally developed for **diabetic retinopathy detection** using the [AI-READI](https://aireadi.org/dataset) dataset. The original CSV files contain latent features extracted from fundus images using [RETFound](https://github.com/rmaphoh/RETFound_MAE), with [AutoMorph](https://github.com/rmaphoh/AutoMorph) preprocessing applied beforehand.
@@ -68,68 +68,94 @@ pip install <package-name>
     ```
 
 ### **2. Customize Hyperparameters**
-Modify `config.py` to adjust hyperparameter search ranges:
-```python
-# Data paths
-# color fundus photography (CFP) dataset
-CSV_PATH = r"C:\Users\S237442\Documents\GitHub\xgboost_project\data\RetFound_LF_all_Automorph_with_fully_labelled.csv"
+- Modify `config.py` to adjust hyperparameter search ranges:
+    
+    Select binary option and machine region
+    ```python
+    # Comparison setting
+    BINARY = True  # False for all 4, True for healthy vs unhealthy
 
+    # Machine region selection
+    MACHINE_REGION = "maestro2_3d_macula"
+    ```
 
-# Parameters foler
-PARAMETERS_FOLDER = r"C:\Users\S237442\Documents\GitHub\xgboost_project\hyperparameters"
+- During each phase, specify the hyperparameter values as 
+  either **a single value** or **a list of discrete options**, not as a continuous range. 
+  The program will **only test the values you provide**—it does **not** 
+  automatically search within a range.
 
-# Models folder
-MODELS_FOLDER = r"C:\Users\S237442\Documents\GitHub\xgboost_project\saved_models"
+    > For example, `LEARNING_RATE = 0.1` will only test a learning rate of 0.1,
+    while `LEARNING_RATE = [0.01, 0.1, 0.3]` will test learning rates of 0.01, 0.1, and 0.3.
 
-# Comparison setting
-BINARY = True  # False for all 4, True for healthy vs unhealthy
+    ✅ Correct example (with recommended values): 
+    ```python
+    # Phase 1
+    LEARNING_RATE = 0.1  # 0.01 - 0.3
+    NUM_ROUND = 100 # 100 - 1000
 
-# Machine region selection
-MACHINE_REGION = "maestro2_3d_macula"
+    # Phase 2
+    MAX_DEPTH = [3, 9] # 3 - 10
+    MIN_CHILD_WEIGHT = [1, 5, 10] # 1 - 10
+    GAMMA = [0, 2] # 0 - 5
 
-# Hyperparameter tuning phases
+    # Phase 3
+    REG_LAMBDA = 1 # 1 - 10
+    REG_ALPHA = 0 # 0 - 10
 
-# Phase 1
-LEARNING_RATE = 0.1  # 0.01 - 0.3
-NUM_ROUND = 100 # 100 - 1000
+    # Phase 4
+    SUBSAMPLE = 1.0 # 0.5 - 1.0
+    COLSAMPLE_BYTREE = 1.0 # 0.5 - 1.0
+    COLSAMPLE_BYLEVEL = 1.0 # 0.5 - 1.0
+    ```
 
-# Phase 2
-MAX_DEPTH = [3, 9] #6 # 3 - 10
-MIN_CHILD_WEIGHT = [1, 10] # 1 # 1 - 10
-GAMMA = [0, 2] # 0 # 0 - 5
-
-# Phase 3
-REG_LAMBDA = 1 # 1 - 10
-REG_ALPHA = 0 # 0 - 10
-
-# Phase 4
-SUBSAMPLE = 1.0 # 0.5 - 1.0
-COLSAMPLE_BYTREE = 1.0 # 0.5 - 1.0
-COLSAMPLE_BYLEVEL = 1.0 # 0.5 - 1.0
-```
+    > [!TIP]
+    > Make sure to document the hyperparameters you tested each time you run the pipeline.
 
 ### **3. Run the Training Pipeline**
-```bash
-python src/main.py
-```
-This script:
-1. Loads the dataset
-2. Splits it into training, validation, and test sets
-3. Runs **manual grid search** for hyperparameter tuning
-4. Saves the best hyperparameters
-5. Trains the final model using the best parameters
-6. Saves the trained model
+- In the project root, run the main script:
+    ```bash
+    python src/main.py
+    ```
 
+- Confirm you are ready: enter `1` to proceed or `0` to exit
+    ```console
+    Last chance to exit the program!
+    -------------------------------------
+    1: I am ready, just do it!
+    0: Exit
+    -------------------------------------
+    Selction: 
+    ```
 
+- The pipeline will run through the following steps: 
+    1. Loads the dataset
+    2. Splits it into training, validation, and test sets
+    3. Runs **manual grid search** for hyperparameter tuning
+    4. Saves the best hyperparameters
+    5. Trains the final model using the best parameters
+    6. Saves the trained model
 
----
+- After training: 
+    ```console
+    Training complete!
+    -------------------------------------
+    Best hyperparameters saved to <path_to_hyperparameters_file>
+    Trained model saved to <path_to_saved_model>
+    -------------------------------------
+    Goodbye!
+    ```
+    The best hyperparameters and trained model are saved in the `hyperparameters` and `saved_models` directories, respectively. The file names include the timestamp of the training session.
+
+### **4. Repeat [Step 2](#2-customize-hyperparameters) and [Step 3](#3-run-the-training-pipeline) for Further Hyperparameter Tuning**
+
+### **5. Load the Best Model for Testing**
+- Under construction
+
 
 ## Future Improvements
-- Automate hyperparameter tuning using Optuna.
-- Implement logging instead of print statements.
-- Add support for feature importance visualization.
+- ROC-AUC display
+- Testing mode 
 
----
 
 ## Author
 **Roy Huang**  
