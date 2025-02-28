@@ -21,7 +21,7 @@ PARAMETERS_FOLDER = r"C:\Users\S237442\Documents\GitHub\xgboost_project\hyperpar
 MODEL_FOLDER = r"C:\Users\S237442\Documents\GitHub\xgboost_project\saved_models"
 
 # Comparison setting
-BINARY = True  # False for all 4, True for health vs unhealthy
+BINARY = True  # False for all 4, True for healthy vs unhealthy
 
 # Machine region selection
 MACHINE_REGION = "maestro2_3d_macula"
@@ -30,12 +30,12 @@ MACHINE_REGION = "maestro2_3d_macula"
 
 # Phase 1
 LEARNING_RATE = 0.1  # 0.01 - 0.3
-NUM_ROUND = 100  # 100 - 1000
+NUM_ROUND = 100 # 100 - 1000
 
 # Phase 2
-MAX_DEPTH = 6 # 3 - 10
-MIN_CHILD_WEIGHT = 1 # 1 - 10
-GAMMA = 0 # 0 - 5
+MAX_DEPTH = [3, 9] #6 # 3 - 10
+MIN_CHILD_WEIGHT = [1, 10] # 1 # 1 - 10
+GAMMA = [0, 2] # 0 # 0 - 5
 
 # Phase 3
 REG_LAMBDA = 1 # 1 - 10

@@ -5,7 +5,6 @@ Originally developed for **diabetic retinopathy detection** using the [AI-READI]
 
 While designed for this specific task, the pipeline can be easily adapted for other **binary or multi-class classification** problems by modifying the dataset preprocessing steps.
 
----
 
 ## Features
 - **End-to-End XGBoost Integration**
@@ -19,13 +18,12 @@ While designed for this specific task, the pipeline can be easily adapted for ot
 - **Customizable Hyperparameters**
     > Easily adjust hyperparameter search ranges in the `config.py` file
 
----
 
 ## Installation
 ### **1. Set Up Conda Environment**
 ```bash
-conda create --name xgboost python=3.9 -y
-conda activate xgboost
+conda create --name xgboost_env python=3.9 -y
+conda activate xgboost_env
 ```
 
 ### **2. Install Dependencies**
@@ -34,10 +32,9 @@ conda install -c conda-forge xgboost scikit-learn pandas numpy
 ```
 *If any package is unavailable via Conda, use pip:*
 ```bash
-pip install xgboost
+pip install <package-name>
 ```
 
----
 
 ## Project Structure
 ```
@@ -48,40 +45,15 @@ pip install xgboost
 │   ├── data_processing.py   # Dataset loading and preprocessing
 │   ├── utils.py             # Utility functions (saving models, creating timestamps, etc.)
 │   ├── config.py            # Configuration file (paths, hyperparameters)
+├── data/                    # Dataset directory
 ├── hyperparameters/         # Stores best hyperparameters found during tuning
 ├── saved_models/            # Stores trained XGBoost models
 ├── README.md                # Project documentation (this file)
 ```
 
----
 
 ## Usage
-### **1. Run the Training Pipeline**
-```bash
-python src/main.py
-```
-This script:
-1. Loads the dataset
-2. Splits it into training, validation, and test sets
-3. Runs **manual grid search** for hyperparameter tuning
-4. Saves the best hyperparameters
-5. Trains the final model using the best parameters
-6. Saves the trained model
-
-### **2. Customize Hyperparameters**
-Modify `config.py` to adjust hyperparameter search ranges:
-```python
-LEARNING_RATE = 0.1
-NUM_ROUND = 100
-MAX_DEPTH = 6
-MIN_CHILD_WEIGHT = 1
-GAMMA = 0
-REG_LAMBDA = 1
-REG_ALPHA = 0
-SUBSAMPLE = 1.0
-COLSAMPLE_BYTREE = 1.0
-COLSAMPLE_BYLEVEL = 1.0
-```
+### **1. Place 
 
 ---
 
