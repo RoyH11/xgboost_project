@@ -25,6 +25,7 @@ def pre_run_check():
 
     if not os.path.exists(CSV_PATH):
         print(f"Data path '{CSV_PATH}' does not exist.")
+        print("Exiting...")
         return False
     
     return True
@@ -51,13 +52,17 @@ def start_or_quit():
     print("-------------------------------------")
 
     try: 
-        start_bool = int(input("Selction: "))
+        start_int = int(input("Selction: "))
     except ValueError:
         print("Invalid input, exiting...")
-        return 0
+        return False
     
+    if start_int != 1:
+        print("\nExiting...")
+        return False
+
     print("\nOK, let's GO!\n")
-    return start_bool
+    return True
 
 
 def create_timestamp():

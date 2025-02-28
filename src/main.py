@@ -17,9 +17,7 @@ def main():
     Main excution script for XGBoost tuning. 
     """
 
-    ready_to_run = pre_run_check()
-    if not ready_to_run:
-        print("Data path is invalid. Exiting the program...")
+    if not pre_run_check():
         return
 
     welcome_message()
@@ -33,8 +31,7 @@ def main():
     # Prepare data
     X_train, X_val, X_test, y_train, y_val, y_test = prepare_data(features, health_conditions)
 
-    if start_or_quit() != 1: 
-        print("Exiting the program...")
+    if not start_or_quit():
         return
     
     timestamp = create_timestamp()

@@ -7,27 +7,36 @@ Description: Configuration file containing hyperparameter settings and dataset p
 for XGBoost model tuning.
 """
 
-# Data paths
-# color fundus photography (CFP) dataset
-CSV_PATH = r"C:\Users\S237442\Documents\GitHub\xgboost_project\data\RetFound_LF_all_Automorph_with_fully_labelled.csv"
+import os
 
-# # optical coherence tomography (OCT) dataset
-# CSV_PATH = "L:\\Lab\\Roy\\AI-READi-Roy\\60_RETFound_stuff\\60_cfp_all\\30_XGBoost\\RETFound_LF_all_OCT_fully_labelled.csv"
+# ---------------------------------------------------------------------
+# Get the root directory of the project, and go back one level        #
+ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))#
+                                                                      #
+# Parameters foler                                                    #
+PARAMETERS_FOLDER = os.path.join(ROOT_DIR, "hyperparameters")         #
+                                                                      #
+# Models folder                                                       #
+MODELS_FOLDER = os.path.join(ROOT_DIR, "saved_models")                #
+                                                                      #
+# ---------------------------------------------------------------------
 
-# Parameters foler
-PARAMETERS_FOLDER = r"C:\Users\S237442\Documents\GitHub\xgboost_project\hyperparameters"
+# color fundus photography (CFP) dataset                                
+CSV_PATH = r"data\RetFound_LF_all_Automorph_with_fully_labelled.csv"
 
-# Models folder
-MODELS_FOLDER = r"C:\Users\S237442\Documents\GitHub\xgboost_project\saved_models"
+# optical coherence tomography (OCT) dataset                        
+# CSV_PATH = r"data\RetFound_LF_all_OCT_fully_labelled.csv"
 
-# Comparison setting
+# ---------------------------------------------------------------------
+CSV_PATH = os.path.join(ROOT_DIR, CSV_PATH)                           #
+# ---------------------------------------------------------------------
+# Comparison setting 
 BINARY = True  # False for all 4, True for healthy vs unhealthy
 
 # Machine region selection
 MACHINE_REGION = "maestro2_3d_macula"
 
 # Hyperparameter tuning phases
-
 # Phase 1
 LEARNING_RATE = 0.1  # 0.01 - 0.3
 NUM_ROUND = 100 # 100 - 1000
