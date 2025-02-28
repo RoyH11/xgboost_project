@@ -126,12 +126,12 @@ def manual_grid_search(X_train, y_train, cv_folds=3):
     print("\n-------------------------------------")
     print("Best parameters found:", best_params)
     print("Best cross-validation score:", best_score)
-    print("---------------------------------------")
+    print("-------------------------------------")
 
     return best_params, best_score
 
 
-def train_final_model(X_train, X_val, y_train, y_val, best_params, timestamp):
+def train_final_model(X_train, X_val, y_train, y_val, best_params):
     """
     Train the final model using the best hyperparameters.
     """
@@ -173,8 +173,8 @@ def train_final_model(X_train, X_val, y_train, y_val, best_params, timestamp):
             verbose=True
         )
 
-    model_filename = save_trained_model(final_model, timestamp)
+    # model_filename = save_trained_model(final_model, timestamp)
 
-    print(f"\nFinal model trained and saved to '{model_filename}'.")
+    # print(f"\nFinal model trained and saved to '{model_filename}'.")
 
-    return model_filename
+    return final_model

@@ -39,7 +39,7 @@ def start_or_quit():
         print("Invalid input, exiting...")
         return 0
     
-    print("OK, let's GO!\n")
+    print("\nOK, let's GO!\n")
     return start_bool
 
 
@@ -91,3 +91,15 @@ def save_trained_model(model, timestamp):
     print(f"\nTrained model saved to '{file_path}'.")
 
     return file_path
+
+
+def training_complete_message(best_params_file_path, final_model_file_path):
+    """
+    Display a message to indicate that the training is complete.
+    """
+    print("\nTraining complete!")
+    print("-------------------------------------")
+    print(f"Best hyperparameters saved to {best_params_file_path}")
+    print(f"Trained model saved to {final_model_file_path}")
+    print("-------------------------------------")
+    print("Goodbye!")

@@ -38,14 +38,16 @@ def main():
     best_params, best_score = manual_grid_search(X_train, y_train)
 
     # Save the best hyperparameters and score to a JSON file
-    best_params_filename = save_hyperparameters(best_params, best_score, timestamp)
+    best_params_file_path = save_hyperparameters(best_params, best_score, timestamp)
 
     # Train the final model using the best hyperparameters
-    train_final_model(X_train, X_val, y_train, y_val, best_params, timestamp)
+    final_model = train_final_model(X_train, X_val, y_train, y_val, best_params)
 
-    print("\nTraining complete!")
-    print(f"Best hyperparameters saved to {best_params_filename}")
-    print(f"Trained model saved to {timestamp}.model")
+    # Save the final model
+    final_model_file_path = save_trained_model(final_model, timestamp)
+
+    # Message to user
+    training_complete_message(best_params_file_path, final_model_file_path)
 
 
 if __name__ == "__main__":
