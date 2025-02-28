@@ -28,7 +28,7 @@ def main():
     # Prepare data
     X_train, X_val, X_test, y_train, y_val, y_test = prepare_data(features, health_conditions)
 
-    if start_or_quit() == 0: 
+    if start_or_quit() != 1: 
         print("Exiting the program...")
         return
     
