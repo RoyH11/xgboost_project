@@ -53,7 +53,74 @@ pip install <package-name>
 
 
 ## Usage
-### **1. Place 
+### **1. Prepare the Dataset**
+- Create a `data` directory in the project root
+    ```bash
+    mkdir data
+    ```
+
+- Place dataset CSV files in the `data` directory. The dataset should contain the columns 
+`machine_region`, `study_group`, and `feature_0` to `feature_n`.
+
+- Modify `config.py` to specify the dataset path:
+    ```python
+    CSV_PATH = r"data\your_dataset.csv"
+    ```
+
+### **2. Customize Hyperparameters**
+Modify `config.py` to adjust hyperparameter search ranges:
+```python
+# Data paths
+# color fundus photography (CFP) dataset
+CSV_PATH = r"C:\Users\S237442\Documents\GitHub\xgboost_project\data\RetFound_LF_all_Automorph_with_fully_labelled.csv"
+
+
+# Parameters foler
+PARAMETERS_FOLDER = r"C:\Users\S237442\Documents\GitHub\xgboost_project\hyperparameters"
+
+# Models folder
+MODELS_FOLDER = r"C:\Users\S237442\Documents\GitHub\xgboost_project\saved_models"
+
+# Comparison setting
+BINARY = True  # False for all 4, True for healthy vs unhealthy
+
+# Machine region selection
+MACHINE_REGION = "maestro2_3d_macula"
+
+# Hyperparameter tuning phases
+
+# Phase 1
+LEARNING_RATE = 0.1  # 0.01 - 0.3
+NUM_ROUND = 100 # 100 - 1000
+
+# Phase 2
+MAX_DEPTH = [3, 9] #6 # 3 - 10
+MIN_CHILD_WEIGHT = [1, 10] # 1 # 1 - 10
+GAMMA = [0, 2] # 0 # 0 - 5
+
+# Phase 3
+REG_LAMBDA = 1 # 1 - 10
+REG_ALPHA = 0 # 0 - 10
+
+# Phase 4
+SUBSAMPLE = 1.0 # 0.5 - 1.0
+COLSAMPLE_BYTREE = 1.0 # 0.5 - 1.0
+COLSAMPLE_BYLEVEL = 1.0 # 0.5 - 1.0
+```
+
+### **3. Run the Training Pipeline**
+```bash
+python src/main.py
+```
+This script:
+1. Loads the dataset
+2. Splits it into training, validation, and test sets
+3. Runs **manual grid search** for hyperparameter tuning
+4. Saves the best hyperparameters
+5. Trains the final model using the best parameters
+6. Saves the trained model
+
+
 
 ---
 
