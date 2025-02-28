@@ -39,7 +39,7 @@ def start_or_quit():
         print("Invalid input, exiting...")
         return 0
     
-    print("User selected: ", start_bool)
+    print("OK, let's GO!\n")
     return start_bool
 
 
@@ -88,6 +88,6 @@ def save_trained_model(model, timestamp):
 
     model.save_model(file_path)
 
-    print(f"\nTrained model saved to '{filename}'.")
+    print(f"\nTrained model saved to '{file_path}'.")
 
-    return filename
+    return file_path
