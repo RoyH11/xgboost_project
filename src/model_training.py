@@ -64,11 +64,15 @@ def cross_validation_model(X_train, y_train, params, cv_folds=3):
     }
     params = copy_and_update_params(params, updates)
 
+    # n_estimator issue
+    cv_params = params.copy()
+    n_estimators = cv_params.pop('n_estimators')
+
     # Perform k-fold cross-validation
     cv_results = xgb.cv(
-        params=params,
+        params=cv_params,
         dtrain=dtrain,
-        num_boost_round=params['n_estimators'],
+        num_boost_round=n_estimators,
         nfold=cv_folds,
         stratified=True,
         early_stopping_rounds=10,
@@ -119,8 +123,10 @@ def manual_grid_search(X_train, y_train, cv_folds=3):
                 best_score = mean_mlogloss
                 best_params = params
 
-    print("\nBest parameters found:", best_params)
+    print("\n-------------------------------------")
+    print("Best parameters found:", best_params)
     print("Best cross-validation score:", best_score)
+    print("---------------------------------------")
 
     return best_params, best_score
 
