@@ -1,13 +1,23 @@
 # XGBoost Model Training and Hyperparameter Tuning
 
 ## Overview
-This project implements an **XGBoost-based model training pipeline** with **manual hyperparameter tuning using cross-validation**. It supports **binary and multi-class classification**, incorporates **early stopping**, and ensures that the best model is saved.
+Originally developed for **diabetic retinopathy detection** using the [AI-READI](https://aireadi.org/dataset) dataset. The original CSV files contain latent features extracted from fundus images using [RETFound](https://github.com/rmaphoh/RETFound_MAE), with [AutoMorph](https://github.com/rmaphoh/AutoMorph) preprocessing applied beforehand.
+
+While designed for this specific task, the pipeline can be easily adapted for other **binary or multi-class classification** problems by modifying the dataset preprocessing steps.
+
+---
 
 ## Features
-- **Data Preprocessing**: Loads and processes datasets for training.
-- **Manual Grid Search**: Custom implementation of hyperparameter tuning with cross-validation.
-- **Early Stopping**: Prevents overfitting by monitoring validation performance.
-- **Best Model Saving**: Ensures that the best-performing model is stored for future use.
+- **End-to-End XGBoost Integration**
+    > Fully optimized for XGBoost, leveraging its built-in GPU acceleration.
+- **GPU-Powered Grid Search**
+    > Unlike sklearn's CPU-bound grid search, this pipeline uses XGBoost's native GPU support for faster hyperparameter tuning, significantly reducing training time on large datasets.
+- **Early Stopping**
+    > Prevents overfitting by monitoring validation performance
+- **Model Persistence**
+    > Automatically saves the best model and its hyperparameters for future use
+- **Customizable Hyperparameters**
+    > Easily adjust hyperparameter search ranges in the `config.py` file
 
 ---
 
