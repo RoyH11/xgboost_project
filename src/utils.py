@@ -12,6 +12,23 @@ from config import *
 import os
 
 
+def pre_run_check():
+    """
+    Check if the parameters and models folders exist.
+    Check if data path is valid.
+    """
+    if not os.path.exists(PARAMETERS_FOLDER):
+        os.makedirs(PARAMETERS_FOLDER)
+
+    if not os.path.exists(MODELS_FOLDER):
+        os.makedirs(MODELS_FOLDER)
+
+    if not os.path.exists(CSV_PATH):
+        print(f"Data path '{CSV_PATH}' does not exist.")
+        return False
+    
+    return True
+
 def welcome_message():
     """
     Display a welcome message to the user.
@@ -84,7 +101,7 @@ def save_trained_model(model, timestamp):
     """
     filename = f"xgboost_model_{timestamp}.json"
 
-    file_path = os.path.join(MODEL_FOLDER, filename)
+    file_path = os.path.join(MODELS_FOLDER, filename)
 
     model.save_model(file_path)
 

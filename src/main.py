@@ -17,6 +17,11 @@ def main():
     Main excution script for XGBoost tuning. 
     """
 
+    ready_to_run = pre_run_check()
+    if not ready_to_run:
+        print("Data path is invalid. Exiting the program...")
+        return
+
     welcome_message()
 
     # Load the dataset
