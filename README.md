@@ -108,7 +108,7 @@ pip install <package-name>
     COLSAMPLE_BYLEVEL = 1.0 # 0.5 - 1.0
     ```
 
-    > [!TIP]
+    > [!TIP]  
     > Make sure to document the hyperparameters you tested each time you run the pipeline.
 
 ### **3. Run the Training Pipeline**
