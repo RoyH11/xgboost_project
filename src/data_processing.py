@@ -27,15 +27,16 @@ def select_machine_region(df):
 
     features = df_machine_region[features_columns]
     health_conditions = df_machine_region["study_group"]
+    recommended_split = df_machine_region["recommended_split"]
 
     print(f"User selected: {MACHINE_REGION}\n")
     time.sleep(0.1)
     print(f"Features shape: {features.shape}")
     print(f"Health conditions shape: {health_conditions.shape}")
 
-    return features, health_conditions
+    return features, health_conditions, recommended_split
 
-def prepare_data(features, health_conditions): 
+def prepare_data(features, health_conditions, recommended_split): 
     """
     Encode labels and splits data into train/test sets.
     """
@@ -45,12 +46,14 @@ def prepare_data(features, health_conditions):
     le = LabelEncoder()
     health_conditions = le.fit_transform(health_conditions)
 
-    # split into train, val, test [0.7, 0.15, 0.15]
-    X_temp, X_test, y_temp, y_test = train_test_split(
-        features, health_conditions, test_size=0.15, random_state=42, stratify=health_conditions
-    )
-    X_train, X_val, y_train, y_val = train_test_split(
-        X_temp, y_temp, test_size=0.15, random_state=42, stratify=y_temp
-    )
+    # split into train, val, test according to recommended split
+    train_mask = recommended_split == "train"
+    val_mask = recommended_split == "val"
+    test_mask = recommended_split == "test"
+
+    # split data
+    X_train, y_train = features[train_mask], health_conditions[train_mask]
+    X_val, y_val = features[val_mask], health_conditions[val_mask]
+    X_test, y_test = features[test_mask], health_conditions[test_mask]
 
     return X_train, X_val, X_test, y_train, y_val, y_test

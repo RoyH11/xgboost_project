@@ -22,7 +22,7 @@ MODELS_FOLDER = os.path.join(ROOT_DIR, "saved_models")                #
 # ---------------------------------------------------------------------
 
 # color fundus photography (CFP) dataset                                
-CSV_PATH = r"data\RetFound_LF_all_Automorph_with_fully_labelled.csv"
+CSV_PATH = r"data\new_cfp_features_fully_labelled.csv"
 
 # optical coherence tomography (OCT) dataset                        
 # CSV_PATH = r"data\RetFound_LF_all_OCT_fully_labelled.csv"
