@@ -28,11 +28,11 @@ conda activate xgboost_env
 
 ### **2. Install Dependencies**
 ```bash
-conda install -c conda-forge xgboost scikit-learn pandas numpy
+conda install -c conda-forge scikit-learn pandas numpy
 ```
-*If any package is unavailable via Conda, use pip:*
+*Use pip to download xgboost so it supports cuda:*
 ```bash
-pip install <package-name>
+pip install xgboost
 ```
 
 

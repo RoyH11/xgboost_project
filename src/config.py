@@ -42,9 +42,9 @@ LEARNING_RATE = 0.1  # 0.01 - 0.3
 NUM_ROUND = 100 # 100 - 1000
 
 # Phase 2
-MAX_DEPTH = [3, 9] #6 # 3 - 10
-MIN_CHILD_WEIGHT = [1, 10] # 1 # 1 - 10
-GAMMA = [0, 2] # 0 # 0 - 5
+MAX_DEPTH = 6 # 3 - 10
+MIN_CHILD_WEIGHT = 1 # 1 - 10
+GAMMA = 0 # 0 - 5
 
 # Phase 3
 REG_LAMBDA = 1 # 1 - 10
